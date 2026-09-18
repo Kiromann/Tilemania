@@ -129,6 +129,7 @@ public class PlayerMovement : MonoBehaviour
             myAnimator.SetTrigger("Dead");
             myRigidbody.linearVelocity = deadKick;
             StartCoroutine(DeadEffect());
+            FindAnyObjectByType<GameSession>().ProcessPlayerDeath();
         }
     }
 
