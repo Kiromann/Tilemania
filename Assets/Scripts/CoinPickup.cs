@@ -3,6 +3,7 @@ using UnityEngine;
 public class CoinPickup : MonoBehaviour
 {
     [SerializeField] AudioClip coinPickupSFX;
+    [SerializeField] int pointsForCoin = 100;
 
     bool wasCollected = false;
 
@@ -14,6 +15,7 @@ public class CoinPickup : MonoBehaviour
             AudioSource.PlayClipAtPoint(coinPickupSFX, transform.position);
             gameObject.SetActive(false); // menonaktifkan jika sudah terambil
             Destroy(gameObject);
+            FindAnyObjectByType<GameSession>().AddScorePlayer(pointsForCoin);
         }
     }
 }

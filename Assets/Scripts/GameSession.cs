@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class GameSession : MonoBehaviour
 {
     [SerializeField] int playerLives = 3;
+    [SerializeField] int playerScore = 0;
 
     [SerializeField] TextMeshProUGUI livesText;
     [SerializeField] TextMeshProUGUI scoreText;
@@ -26,6 +27,7 @@ public class GameSession : MonoBehaviour
     void Start()
     {
         livesText.text = playerLives.ToString();
+        scoreText.text = playerScore.ToString();
     }
 
     public void ProcessPlayerDeath()
@@ -38,6 +40,12 @@ public class GameSession : MonoBehaviour
         {
             ResetGameSession();
         }
+    }
+
+    public void AddScorePlayer(int point)
+    {
+            playerScore += point;
+            scoreText.text = playerScore.ToString();   
     }
 
     void ResetGameSession()
@@ -55,10 +63,5 @@ public class GameSession : MonoBehaviour
         int currentIndexScene = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentIndexScene);
         livesText.text = playerLives.ToString();
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
